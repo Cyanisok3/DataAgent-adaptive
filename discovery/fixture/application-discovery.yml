@@ -1,0 +1,27 @@
+# Loaded only by the explicit `discovery` Spring profile.
+# It extends the repository's application-h2.yml without changing it.
+spring:
+  sql:
+    init:
+      schema-locations:
+        - classpath:sql/h2/schema-h2.sql
+        - classpath:sql/h2/product_schema-h2.sql
+        - file:${DISCOVERY_FIXTURE_DIR}/discovery_schema.sql
+      data-locations:
+        - classpath:sql/h2/data-h2.sql
+        - classpath:sql/h2/product_data-h2.sql
+        - file:${DISCOVERY_FIXTURE_DIR}/discovery_seed.sql
+  ai:
+    alibaba:
+      data-agent:
+        vector-store:
+          file-path: ${DISCOVERY_RUNTIME_DIR}/vectorstore/vectorstore.json
+        file:
+          path-prefix: discovery
+          path: ${DISCOVERY_RUNTIME_DIR}/uploads
+          url-prefix: /discovery/uploads
+
+logging:
+  level:
+    com.alibaba.cloud.ai.dataagent.workflow: DEBUG
+    com.alibaba.cloud.ai.dataagent.service.graph: DEBUG

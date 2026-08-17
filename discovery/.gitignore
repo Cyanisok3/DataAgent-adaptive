@@ -1,0 +1,8 @@
+# Local runtime artifacts and potential model-generated material
+logs/
+runs/
+uploads/
+
+# H2 files if an experiment switches away from the in-memory profile
+fixture/*.mv.db
+fixture/*.trace.db
